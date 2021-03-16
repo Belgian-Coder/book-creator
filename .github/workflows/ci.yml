@@ -20,6 +20,7 @@ jobs:
           with:
             find: "<base href=\"/\" />"
             replace: "<base href=\"/book-creator/\" />"
+            include: "*.html"
 
         # Run tests
         - name: Test
