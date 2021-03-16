@@ -16,8 +16,6 @@ namespace book_creator
 
             builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 
-            var basePath = builder.HostEnvironment.IsDevelopment() ? "/" : "/book-creator/";
-            builder.Configuration.SetBasePath(basePath);
             await builder.Build().RunAsync();
         }
     }
