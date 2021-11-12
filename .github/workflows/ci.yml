@@ -28,7 +28,7 @@ jobs:
 
         # Generate the website
         - name: Publish
-          run: dotnet publish book-creator/book-creator.csproj --configuration Release
+          run: dotnet publish book-creator.csproj --configuration Release
 
         # Publish the website
         - name: GitHub Pages action
