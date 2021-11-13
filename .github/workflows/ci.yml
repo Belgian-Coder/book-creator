@@ -26,14 +26,6 @@ jobs:
         - name: Publish
           run: dotnet publish book-creator/book-creator.csproj --configuration Release
 
-        # Replace base url
-        - name: Replace base url
-          uses: jacobtomlinson/gha-find-replace@master
-          with:
-            find: "<base href=\"/\" />"
-            replace: "<base href=\"/book-creator/\" />"
-            include: ".*.html"
-
         # Publish the website
         - name: GitHub Pages action
           if: ${{ github.ref == 'refs/heads/master' }} # Publish only when the push is on master
