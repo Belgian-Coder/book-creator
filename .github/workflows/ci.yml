@@ -14,14 +14,6 @@ jobs:
           with:
             dotnet-version: 6.0.x
 
-        # Replace base url
-        - name: Replace base url
-          uses: jacobtomlinson/gha-find-replace@master
-          with:
-            find: "<base href=\"/\" />"
-            replace: "<base href=\"/book-creator/\" />"
-            include: ".*.html"
-
         # Install WASM tools for AOT
         - name: Install WASM tools for AOT
           run: dotnet workload install wasm-tools
@@ -34,9 +26,13 @@ jobs:
         - name: Publish
           run: dotnet publish book-creator/book-creator.csproj --configuration Release
 
-        # changes the base-tag in index.html from '/' to 'BlazorGitHubPagesDemo' to match GitHub Pages repository subdirectory
-        - name: Change base-tag in index.html from / to book-creator
-          run: sed -i 's/<base href="\/" \/>/<base href="\/book-creator\/" \/>/g' release/wwwroot/index.html
+        # Replace base url
+        - name: Replace base url
+          uses: jacobtomlinson/gha-find-replace@master
+          with:
+            find: "<base href=\"/\" />"
+            replace: "<base href=\"/book-creator/\" />"
+            include: ".*.html"
 
         # Publish the website
         - name: GitHub Pages action
