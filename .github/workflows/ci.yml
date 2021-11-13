@@ -30,6 +30,10 @@ jobs:
         - name: Publish
           run: dotnet publish book-creator/book-creator.csproj --configuration Release
 
+        # changes the base-tag in index.html from '/' to 'BlazorGitHubPagesDemo' to match GitHub Pages repository subdirectory
+        - name: Change base-tag in index.html from / to book-creator
+          run: sed -i 's/<base href="\/" \/>/<base href="\/book-creator\/" \/>/g' book-creator/release/wwwroot/index.html
+
         # Publish the website
         - name: GitHub Pages action
           if: ${{ github.ref == 'refs/heads/master' }} # Publish only when the push is on master
